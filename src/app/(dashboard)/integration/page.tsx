@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+  
 import { onGetPaymentConnected } from '@/actions/settings'
 import InfoBar from '@/components/infobar'
 import IntegrationsList from '@/components/integrations'
