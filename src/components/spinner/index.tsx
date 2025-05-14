@@ -1,11 +1,9 @@
 import { cn } from "@/lib/utils";
 import React from "react";
-import { DynamicOptionsLoadingProps } from "next/dynamic";
 
-// Make SpinnerProps extend DynamicOptionsLoadingProps
 type SpinnerProps = {
   noPadding?: boolean;
-} & Partial<DynamicOptionsLoadingProps>;
+};
 
 export const Spinner = ({ noPadding }: SpinnerProps) => {
   return (
