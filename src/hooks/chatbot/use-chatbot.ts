@@ -96,15 +96,18 @@ export const useChatBot = () => {
   }
 
   useEffect(() => {
-    window.addEventListener('message', (e) => {
-      console.log(e.data)
-      const botid = e.data
-      if (limitRequest < 1 && typeof botid == 'string') {
-        onGetDomainChatBot(botid)
-        limitRequest++
-      }
-    })
-  }, [])
+  const messageHandler = (e) => {
+    console.log("Message received:", e.data);
+    const botid = e.data;
+    if (typeof botid === 'string' && botid.length > 10 && !currentBotId) {
+      console.log("Setting up chatbot with ID:", botid);
+      onGetDomainChatBot(botid);
+    }
+  };
+  
+  window.addEventListener('message', messageHandler);
+  return () => window.removeEventListener('message', messageHandler);
+}, [currentBotId]);
 
   const onStartChatting = handleSubmit(async (values) => {
     console.log('ALL VALUES', values)
